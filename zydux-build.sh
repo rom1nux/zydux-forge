@@ -3,7 +3,7 @@
 #                      |__   |  |  |    \|  |  |  |  |
 #                      |   __|\   /|  |  |  |  |-   -|
 #                      |_____| |_| |____/|_____|__|__|
-#
+#                        Copyright (c) 2017 zydux.org
 #                              OS BUILDER
 #
 # ======================================================================
@@ -28,6 +28,7 @@ common_init()
 	zydux_add_dir_to_front_path ${ZYDUX_TOOLCHAIN_DIR}/bin
 }
 
+# Export all cross toolchain variables
 common_export()
 {
 	zydux_export CC=${ZYDUX_TARGET}-gcc
@@ -40,6 +41,7 @@ common_export()
 	zydux_export STRIP=${ZYDUX_TARGET}-strip
 }
 
+# Make a report at end of step
 common_report()
 {
 	[ ${ZYDUX_CHANGE_REPORT_ENABLED} -eq 0 ] && return

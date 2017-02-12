@@ -3,13 +3,9 @@
 #                      |__   |  |  |    \|  |  |  |  |
 #                      |   __|\   /|  |  |  |  |-   -|
 #                      |_____| |_| |____/|_____|__|__|
+#                        Copyright (c) 2017 zydux.org
+#                               REPORT LIBRARY
 #
-#                             REPORT LIBRARY
-#
-# ======================================================================
-# TODO :
-# * Handle switch for with or without symb link, beacause of busybox link
-#   vs too much link in kernel module sources
 # ======================================================================
 
 # Create files snapshot

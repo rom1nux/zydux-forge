@@ -3,66 +3,91 @@
                         |__   |  |  |    \|  |  |  |  |
                         |   __|\   /|  |  |  |  |-   -|
                         |_____| |_| |____/|_____|__|__|
- 
-                             INSTALLATION GUIDE
+                          Copyright (c) 2017 zydux.org 
+                               INSTALLATION GUIDE
 
 ========================================================================
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+========================================================================  
+
 
 PREAMBLE
 
-ZYDUX Project is a collection script to whose aim to cross build a small 
-GNU Linux operating system from scratch.
+ ZYDUX Project is a collection script to whose aim to cross build a small 
+ GNU Linux operating system from scratch named ZYDUX.
+ You can find official repository on https://github.com/rom1nux/zydux-forge
+
+
+PREREQUIST
+ 
+ Please install following package before using zydux-forge :
+ $ apt-get install build-essential qemu
 
 
 INSTALLATION
 
-Installation is simple as extract scripts and add directory to PATH
+ Installation is simple as extract scripts and add directory to PATH
 
-1 - Extract zydux-forge.tar.bz2 where you want (ex: /usr/local/zydux-forge)    
-    cd /usr/local
-    tar xf zydux-forge.tar.bz2
+ 1 - Extract zydux-forge.tar.bz2 where you want (ex: /usr/local/zydux-forge)    
+     $ cd /usr/local
+     $ tar xf zydux-forge.tar.bz2
 
-2 - Be sure scipts are executable
-    chmod -R a+x /usr/local/zydux-forge
+ 2 - Be sure scipts are executable
+     $ chmod -R a+x /usr/local/zydux-forge
 
-3 - Add directory to PATH like
-    export PATH=$PATH:/usr/local/zydux-forge
-    (You can add this line to your .bashrc file to always add directory to PATH)
-
-
-USING
-
-When you install the zydux-forge, you will be able to start build
-
-1 - Create a working directory where you want for example in your home directory
-    mkdir ~/workbench
-    cd ~/workbench
-
-2 - You can execute every zydux-xxxx.sh function. The first time you execute command,
-    a default configuration file "zydux-config.inc" is created in working directory.
-    Adjust configuration in this file and execute the commands
-    Launch zydux command without argument or with "help" argument to see the help
+ 3 - Add directory to PATH like
+     $ export PATH=$PATH:/usr/local/zydux-forge
+     (You can add this line to your .bashrc file to always add directory to PATH)
 
 
-BUILD
+HOW TO USE
 
-Build is made in 2 main steps :
+ When you install the zydux-forge, you will be able to start build
+
+ 1 - Create a working directory where you want for example in your home directory
+     $ mkdir ~/workbench
+     $ cd ~/workbench
+
+ 2 - You can execute every zydux-xxxx.sh function. The first time you execute command,
+     a default configuration file "zydux-config.inc" is created in working directory.
+     Adjust configuration in this file and execute the commands
+     Launch zydux command without argument or with "help" argument to see the help
+
+
+BUILD PROCEDURE
+
+ Build is made in 2 main steps :
  - Build a cross compiler
  - Build the system with the cross compiler
 
-Here is a simple procedure :
+ Here is a simple procedure :
 
-1 - Build the cross compiler
-    zydux-toolchain.sh all
+ 1 - Generate default configuration file
+     $ zydux-forge.sh
+     Adjust configuration as you need
 
-2 - Build the system
-    zydux-build.sh all
+ 2 - Build the cross compiler (build in "toolchain" folder)
+     $ zydux-toolchain.sh all
 
-3 - Create a hdd image
-    zydux-image.sh build
+ 3 - Build the system (build in "targer" folder)
+     $ zydux-build.sh all
 
-4 - Launch image in emulator
-    zydux-image.sh qemu
+ 4 - Create a hdd image (build in the working directory)
+     $ zydux-image.sh build
+
+ 5 - Launch image in emulator
+     $ zydux-image.sh qemu
 
 In case of problem you can use "resume" command to resume the "all" command where tou were
 
@@ -74,20 +99,21 @@ If you want to manually adjust the system :
 1 - Modify "target" directory as you need
 
 2 - Rebuild the hdd image 
-    zydux-image.sh build
+    $ zydux-image.sh build
 
 3 - Launch image in emulator
-    zydux-image.sh qemu
+    $ zydux-image.sh qemu
 
 If you want to directly adjust the image
 
 1 - Mount the image
-    zydux-image.sh mount
+    $ zydux-image.sh mount
 
 2 - Modify the image mounter on "mnt" directory
 
 3 - Unmount the image
-    zydux-image.sh umount
+    $ zydux-image.sh umount
 
 4 - Launch image in emulator
-    zydux-image.sh qemu
+    $ zydux-image.sh qemu
+

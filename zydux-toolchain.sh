@@ -3,13 +3,33 @@
 #                      |__   |  |  |    \|  |  |  |  |
 #                      |   __|\   /|  |  |  |  |-   -|
 #                      |_____| |_| |____/|_____|__|__|
-#
-#                            TOOLCHAIN BUILDER
+#                        Copyright (c) 2017 zydux.org
+#                             TOOLCHAIN BUILDER
 #
 # ======================================================================
 # TODO :
-# - Do not remove builds dir, only toolchain dir
-# - Do not remove reports dir, only "zydux-toolchain*"
+#
+# - Actually process die at step "gcc_2", but if "gcc_2" is restarted
+#   build continue without problem. It's probably an export conflict
+#   from previous step, i found in config.log :
+#   After die :
+#    ...
+#    configure:4078: checking for x86_64-linux-gnu-gcc
+#    configure:4105: result: i486-zydux-linux-musl-gcc  <<< WTF ???
+#    ...
+#    configure:4517: error: cannot run C compiled programs.
+#    ...
+#   After restart the step wihout any change :
+#    ...
+#    configure:4078: checking for x86_64-linux-gnu-gcc
+#    configure:4094: found /usr/bin/x86_64-linux-gnu-gcc
+#    ...
+#
+# - After "musl" step, the loader "...lib/ld-musl-i386.so.1"is found,
+#   it's a link to /lib/libc.so. But after "gcc_2" the link is removed
+#   I create a "loader" step to create the link but hop i will understand
+#   why the link is removed
+#
 # - Add C++ support
 # ======================================================================
 
@@ -29,6 +49,7 @@ common_init()
 	zydux_add_dir_to_front_path ${ZYDUX_TOOLCHAIN_DIR}/bin
 }
 
+# Make a report at end of step
 common_report()
 {
 	[ ${ZYDUX_CHANGE_REPORT_ENABLED} -eq 0 ] && return
