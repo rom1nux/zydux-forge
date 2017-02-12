@@ -4,7 +4,7 @@
 #                      |   __|\   /|  |  |  |  |-   -|
 #                      |_____| |_| |____/|_____|__|__|
 #                        Copyright (c) 2017 zydux.org
-#                         IMAGE BUILDER AND EMULATION
+#                         IMAGE BUILDER / EMULATION
 #
 # ======================================================================
 
