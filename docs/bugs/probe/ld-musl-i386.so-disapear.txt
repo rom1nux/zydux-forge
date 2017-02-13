@@ -1,0 +1,24 @@
+PROBLEME
+
+After "gcc_2" ld-musl-i386.so.1 point to /lib/libc.so disapear
+
+
+INVESTIGATION
+
+I add a watch to the file before launch "gcc_2". Here is the watch declaration
+
+$ sudo auditctl -w /home/romain/Bureau/workbench/toolchain/i486-zydux-linux-musl/lib/ld-musl-i386.so.1 -p rwxa -k LDMUSL
+
+Here is the /var/log/audit/audit.log line appear at the make install of gcc
+
+...
+type=CONFIG_CHANGE msg=audit(1486949052.954:70): auid=4294967295 ses=4294967295 op="updated_rules" path="/home/romain/Bureau/workbench/toolchain/i486-zydux-linux-musl/lib/ld-musl-i386.so.1" key="LDMUSL" list=4 res=1
+type=SYSCALL msg=audit(1486949052.954:71): arch=c000003e syscall=87 success=yes exit=0 a0=7fffae6944a0 a1=4c2dab a2=1 a3=11 items=2 ppid=393 pid=415 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=pts8 ses=4294967295 comm="ldconfig.real" exe="/sbin/ldconfig.real" key="LDMUSL"
+type=CWD msg=audit(1486949052.954:71):  cwd="/home/romain/Bureau/workbench/builds/zydux-toolchain-gcc_2/i486-zydux-linux-musl/libssp"
+type=PATH msg=audit(1486949052.954:71): item=0 name="/home/romain/Bureau/workbench/toolchain/i486-zydux-linux-musl/lib/" inode=1349484 dev=08:01 mode=040775 ouid=1000 ogid=1000 rdev=00:00 nametype=PARENT
+type=PATH msg=audit(1486949052.954:71): item=1 name="/home/romain/Bureau/workbench/toolchain/i486-zydux-linux-musl/lib/ld-musl-i386.so.1" inode=1350091 dev=08:01 mode=0120777 ouid=1000 ogid=1000 rdev=00:00 nametype=DELETE
+type=PROCTITLE msg=audit(1486949052.954:71): proctitle=2F7362696E2F6C64636F6E6669672E7265616C002D6E002F686F6D652F726F6D61696E2F4275726561752F776F726B62656E63682F746F6F6C636861696E2F693438362D7A796475782D6C696E75782D6D75736C2F6C6962
+...
+
+
+/sbin/ldconfig.real seem to delete the ld-musl-i386.so.1 symbolic link :(

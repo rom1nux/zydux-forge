@@ -342,6 +342,8 @@ function cmd_musl()
 	# Install
 	zydux_export DESTDIR=${ZYDUX_TOOLCHAIN_DIR}/${ZYDUX_TARGET}
 	zydux_exec make install	
+	# Clean exported vars
+	unset CC
 	# Leave dir
 	zydux_leave_dir
 	# Report
@@ -355,7 +357,7 @@ function cmd_musl()
 # Brief		Build gcc step 2
 # ----------------------------------------------------------------------
 function cmd_gcc_2()
-{
+{	
 	# Timing reference
 	local timeref=$(zydux_tic)
 	# Section
@@ -376,7 +378,7 @@ function cmd_gcc_2()
 		zydux_log NOTICE "GCC bootstrap disabled !"
 		extargs="${extargs}--disable-bootstrap "
 	fi
-	# Configure	
+	# Configure		
 	zydux_exec		${gcc_source_dir}/configure \
 					--build=${ZYDUX_HOST} \
 					--host=${ZYDUX_HOST} \

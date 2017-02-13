@@ -1,0 +1,16 @@
+PROBLEM
+
+"gcc_2" hang with error :
+
+gcc-6.3.0/libmpx/mpxrt/mpxrt.h:52:42: error: invalid application of 'sizeof' to incomplete type 'struct _libc_fpstate'  
+
+
+INVESTIGATION
+
+ibmpx uses secure_getenv and struct _libc_fpstate not present in musl
+
+
+SOLUTION
+
+
+Add "--disable-libmpx" for gcc configure

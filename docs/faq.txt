@@ -4,11 +4,7 @@
                         |   __|\   /|  |  |  |  |-   -|
                         |_____| |_| |____/|_____|__|__|
                           Copyright (c) 2017 zydux.org
-                                  BUILD FAQ
+                                    FAQ
 ========================================================================
 
 
-
-* GCC/MUSL BUILD ERROR WITH MUSL
-  gcc-6.3.0/libmpx/mpxrt/mpxrt.h:52:42: error: invalid application of 'sizeof' to incomplete type 'struct _libc_fpstate'  
-  libmpx uses secure_getenv and struct _libc_fpstate not present in musl, add "--disable-libmpx" for gcc
