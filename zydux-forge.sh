@@ -62,10 +62,10 @@ function cmd_backup()
 }
 
 # ----------------------------------------------------------------------
-# Command	bkpforge
+# Command	forge_backup
 # Brief		Backup zidux-forge source code
 # ----------------------------------------------------------------------
-function cmd_bkpforge()
+function cmd_forge_backup()
 {
 	# Timing reference
 	local timeref=$(zydux_tic)
@@ -83,6 +83,29 @@ function cmd_bkpforge()
 	zydux_leave_dir
 	# Done
 	zydux_log SUCCESS "Backup ready to '${filename}' ($(zydux_size_to_human $(zydux_file_size ${ZYDUX_WORK_DIR}/${filename}))) !"
+	zydux_log SUCCESS "Done in $(zydux_sec_to_human $(zydux_toc ${timeref})) !"
+}
+
+# ----------------------------------------------------------------------
+# Command	forge_commit
+# Brief		Commit and push zidux-forge source code modification to github
+# ----------------------------------------------------------------------
+function cmd_forge_commit()
+{	
+	# Timing reference
+	local timeref=$(zydux_tic)
+	# Section
+	zydux_section "GIT COMMIT"	
+	read -p "Modification comment : " comment
+	# Enter dir	
+	zydux_enter_dir ${ZYDUX_BASE_DIR}
+	# Commit
+	zydux_exec git add .
+	zydux_exec git commit -m "test"
+	zydux_exec git push
+	# Leave dir
+	zydux_leave_dir
+	# Done
 	zydux_log SUCCESS "Done in $(zydux_sec_to_human $(zydux_toc ${timeref})) !"
 }
 
