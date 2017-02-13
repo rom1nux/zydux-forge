@@ -101,7 +101,7 @@ function cmd_forge_commit()
 	zydux_enter_dir ${ZYDUX_BASE_DIR}
 	# Commit	
 	zydux_exec git add .
-	zydux_exec git commit -m '${comment}'
+	git commit -m "$comment"
 	zydux_exec git status
 	zydux_exec git push
 	# Leave dir
