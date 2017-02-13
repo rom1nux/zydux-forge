@@ -14,7 +14,7 @@ set +h
 # Script info
 ZYDUX_FORGE_TITLE="ZYDUX FORGE"
 ZYDUX_FORGE_NAME="zydux-forge"
-ZYDUX_FORGE_VERSION="0.45"
+ZYDUX_FORGE_VERSION="0.46"
 ZYDUX_FORGE_COPYRIGHT="Copyright (c) 2017 zydux.org"
 
 # Script
