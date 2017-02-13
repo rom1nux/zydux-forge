@@ -8,14 +8,18 @@
 #
 # ======================================================================
 
+# Export variable and log it
+# @ : export args (<var>=<value>)
 function zydux_export()
 {	
-	for arg in ${@}; do
+	for arg in "${@}"; do
 		zydux_log EXPORT "${arg}"
 		eval export ${arg}
 	done
 }
-	
+
+# Execute command and log it 	
+# @ : command and args (<cmd> <arg1> <arg2> ...)
 function zydux_exec()
 {	
 	# Timing reference

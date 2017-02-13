@@ -30,6 +30,7 @@ function zydux_in_array() {
 
 
 # Init tic counter
+# &1 : Timestamp
 function zydux_tic()
 {
 	echo $(date +%s)
