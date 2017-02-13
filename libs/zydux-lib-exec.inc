@@ -9,7 +9,7 @@
 # ======================================================================
 
 # Export variable and log it
-# @ : export args (<var>=<value>)
+# @ : export args (<var>=<value>) 
 function zydux_export()
 {	
 	for arg in "${@}"; do

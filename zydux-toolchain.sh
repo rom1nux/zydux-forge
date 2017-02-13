@@ -377,8 +377,7 @@ function cmd_gcc_2()
 		extargs="${extargs}--disable-bootstrap "
 	fi
 	# Configure	
-	zydux_exec		/bin/bash \
-					${gcc_source_dir}/configure \
+	zydux_exec		${gcc_source_dir}/configure \
 					--build=${ZYDUX_HOST} \
 					--host=${ZYDUX_HOST} \
 					--target=${ZYDUX_TARGET} \
