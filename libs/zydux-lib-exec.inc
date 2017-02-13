@@ -22,15 +22,9 @@ function zydux_exec()
 	local timeref=$(zydux_tic)	
 	# Export variables
 	local cmd=""
-	#local doexport=1
-	for arg in ${@}; do
-		#if [ ${doexport} -eq 1 ] && [[ "${arg}" == *=* ]]; then
-		#	zydux_log MSG "export ${arg}"
-		#	eval export ${arg}			
-		#else
-		#	doexport=0
+	for arg in "${@}"; do
 			cmd="${cmd}${arg} "
-		#fi
+			#echo ">>> $arg"
 	done	
 	zydux_log DEBUG "$(env)"
 	# Log command line

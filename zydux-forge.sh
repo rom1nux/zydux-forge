@@ -97,11 +97,12 @@ function cmd_forge_commit()
 	# Section
 	zydux_section "GIT COMMIT"	
 	read -p "Modification comment : " comment
+	[ -z "${comment}" ] && comment="Upddate"
 	# Enter dir	
 	zydux_enter_dir ${ZYDUX_BASE_DIR}
 	# Commit	
 	zydux_exec git add .
-	git commit -m "$comment"
+	zydux_exec git commit -m \""${comment}"\"
 	zydux_exec git status
 	zydux_exec git push
 	# Leave dir
